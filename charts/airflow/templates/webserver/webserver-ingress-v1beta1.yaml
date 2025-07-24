@@ -20,16 +20,16 @@ spec:
   {{- if .Values.ingress.web.tls.enabled }}
   tls:
     - hosts:
-        - {{ .Values.ingress.web.host }}
+        - {{ .Values.ingress.web.host | quote }}
       {{- if .Values.ingress.web.tls.secretName }}
       secretName: {{ .Values.ingress.web.tls.secretName }}
       {{- end }}
   {{- end }}
   {{- if .Values.ingress.web.ingressClassName }}
   ingressClassName: {{ .Values.ingress.web.ingressClassName }}
-  {{- end }}  
+  {{- end }}
   rules:
-    - host: {{ .Values.ingress.web.host }}
+    - host: {{ .Values.ingress.web.host | quote }}
       http:
         paths:
           {{- range .Values.ingress.web.precedingPaths }}
